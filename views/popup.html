@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <button id="changeColor" style="background-color:#3aa757;">Toggle Reading Mode</button>
-    <div id="checkboxContainer">
-      <input type="checkbox" id="toggleReadingMode" name="toggle">
-      <label for="toggleReadingMode">Toggle on default</label>
-    </div>
-  </body>
+	<head>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+
+	<body document-br-mode="" class="flex flex-column align-items-center">
+
+		<button id="toggleBtn" class="w-100 flex flex-column align-items-center">
+			<span>	
+				Toggle Reading Mode 
+			</span>
+			<span id="onModeLabel" class="modeLabel">On</span>
+			<span id="offModeLabel" class="modeLabel">off</span></button>
+
+		<div id="saccadesEdit" class="w-100">
+			<label style="display: block" id="lineHeightLabel">Saccades interval: <span id="saccadesIntervalLabel"></span></label>
+			<div class="slidecontainer">
+				<input type="range" min="0" max="4" value="" class="slider" id="saccadesSlider" />
+			</div>
+		</div>
+		
+		<div id="lineHeightEdit" class="w-100">
+			<label style="display: block" id="lineHeightLabel">Line Height: <span id="lineHeightLabelValue"></span></label>
+			<input type="range" name="lineHeightSlider" id="lineHeightSlider" class="slider" min="0" max="4" step="1">
+		</div>
+
+		<div id="checkboxContainer">
+			<input type="checkbox" id="toggleOnDefaultCheckbox" name="toggle" />
+			<label for="toggleOnDefaultCheckbox">Toggle on default</label>
+		</div>
+		<script src="popup.js"></script>
+	</body>
 </html>

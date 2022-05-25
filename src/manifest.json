@@ -1,22 +1,14 @@
 {
-  "name": "Bionic Reading",
-  "description": "An extension that allows for Bionic Reading on any webpage!",
-  "version": "0.0.1",
-  "manifest_version": 2,
-
   "icons": {
     "16": "assets/icons/icon16.png",
     "32": "assets/icons/icon32.png",
     "64": "assets/icons/icon64.png",
     "128": "assets/icons/icon128.png"
   },
-  "browser_action": {
+  "action": {
     "default_icon": "assets/icons/icon128.png",
-    "default_popup": "popup.html"
-  },
-  "background": {
-    "page": "background.html",
-    "persistent": true
+    "default_popup": "popup.html",
+    "default_style": "style.css"
   },
   "content_scripts": [
     {
@@ -24,5 +16,22 @@
       "js": ["js/contentScript.bundle.js"]
     }
   ],
-  "permissions": ["storage", "activeTab"]
+
+  "name": "Bionic Reading",
+  "description": "An extension that allows for Bionic Reading on any webpage!",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "js/background.bundle.js"
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://*/*"],
+  "commands": {
+    "toggle-bionic": {
+      "suggested_key": {
+        "default": "Alt+Shift+B"
+      },
+      "description": "Toggle bionic reading mode"
+    }
+  }
 }
