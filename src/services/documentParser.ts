@@ -21,17 +21,25 @@ let origin = '';
 
 /** @type {import('./siteElementExclusions').Excluder} */
 let excludeByOrigin;
+// let wordsMapCache: Map<string, [string, number]> = new Map();
+let wordsMapCache: Map<string, string> = new Map();
 
 // making half of the letters in a word bold
-function highlightText(sentenceText) {
+function highlightText(sentenceText, pWordsMapCache = wordsMapCache) {
 	return sentenceText.replace(/\p{L}+/gu, (word) => {
 		const { length } = word;
+		if (pWordsMapCache.has(word)) {
+			return pWordsMapCache.get(word);
+		}
 
 		const brWordStemWidth = length > 3 ? Math.round(length * BR_WORD_STEM_PERCENTAGE) : length;
 
 		const firstHalf = word.slice(0, brWordStemWidth);
 		const secondHalf = word.slice(brWordStemWidth);
 		const htmlWord = `<br-bold>${makeFixations(firstHalf)}</br-bold>${secondHalf.length ? `<br-edge>${secondHalf}</br-edge>` : ''}`;
+		
+		pWordsMapCache.set(word, htmlWord);
+
 		return htmlWord;
 	});
 }
@@ -107,8 +115,9 @@ function parseNode(/** @type Element */ node) {
 			node.textContent = '';
 		} catch (error) {
 			Logger.logError(error);
+		} finally {
+			return;
 		}
-		return;
 	}
 
 	if (node.hasChildNodes()) [...node.childNodes].forEach(parseNode);

@@ -1,4 +1,5 @@
 {
 	"jshint.enable": false,
-	"prettier.printWidth": 0
+	"prettier.printWidth": 0,
+	"task.allowAutomaticTasks": "on"
 }
