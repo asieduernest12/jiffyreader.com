@@ -142,7 +142,7 @@ function IndexPopupNew() {
 		};
 
 		setTabSession({ ...tabSession, brMode: newBrMode });
-		runTimeHandler.runtime.sendMessage(payload, () => Logger.LogLastError());
+		(runTimeHandler as typeof chrome).runtime.sendMessage(payload, () => Logger.LogLastError());
 
 		TabHelper.getActiveTab(true).then((tab) => chrome.tabs.sendMessage(tab.id, payload, () => Logger.LogLastError()));
 	};

@@ -144,6 +144,6 @@ function onInstallHandler(event: chrome.runtime.InstalledDetails) {
 
 chrome.runtime.onInstalled.addListener(onInstallHandler);
 
-chrome?.commands?.onCommand?.addListener(commandListener);
+runTimeHandler.commands.onCommand?.addListener(commandListener);
 
-runTimeHandler.runtime.onMessage.addListener(messageListener);
+(runTimeHandler as typeof chrome).runtime.onMessage.addListener(messageListener);

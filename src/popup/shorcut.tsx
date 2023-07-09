@@ -7,7 +7,7 @@ export function useShortcut() {
 	const [shortcut, setShortcut] = useState(undefined);
 
 	const getShortcut = () => {
-		runTimeHandler.runtime
+		(runTimeHandler as typeof chrome).runtime
 			.sendMessage({ message: 'getShortcut' })
 			.then((shortcutResponse) => setShortcut(shortcutResponse))
 			.catch(Logger.logError);
