@@ -92,7 +92,7 @@ const messageListener = (request, sender: chrome.runtime.MessageSender, sendResp
 			break;
 		}
 		case 'getShortcut': {
-			chrome.commands
+			runTimeHandler.commands
 				.getAll()
 				.then((commands) => {
 					const [commandEntry = undefined] = commands.filter(({ name }) => /toggle-bionic/.test(name));
