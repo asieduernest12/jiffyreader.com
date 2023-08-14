@@ -70,7 +70,7 @@ function IndexPopupNew() {
 	useEffect(() => {
 		Logger.logInfo('%cprefstore updated', popupLogStyle, prefs);
 
-		if (!appConfigPrefs?.transforControlPanelText || !prefs) return;
+		if (!appConfigPrefs?.transformControlPanelText || !prefs) return;
 
 		setProperty('--fixation-edge-opacity', prefs.fixationEdgeOpacity + '%');
 		setSaccadesStyle(prefs.saccadesStyle);
