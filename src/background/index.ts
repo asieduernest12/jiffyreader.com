@@ -33,15 +33,24 @@ const fireUpdateNotification = async (eventReason: chrome.runtime.OnInstalledRea
 
 const initializeUserPrefStorage = async () => {
 	try {
-		const prefStore = await storage.get(USER_PREF_STORE_KEY);
+		const prefStore = (await storage.get(USER_PREF_STORE_KEY)) as {};
 		Logger.logInfo('background: prefStore install value', prefStore);
 
-		if (!prefStore) {
-			await storage.set(USER_PREF_STORE_KEY, { global: defaultPrefs, local: {} });
-			Logger.logInfo('background: prefStore initialization processed', await storage.get(USER_PREF_STORE_KEY));
-		} else {
-			Logger.logInfo('background: prefStore initialization skipped', prefStore);
-		}
+		const newPrefs = {
+			global: { ...defaultPrefs, ...(prefStore?.['global'] ?? {}) },
+			local: { ...(prefStore?.['local'] ?? {}) },
+		};
+
+		Logger.logInfo('initializeUserPrefStorage', { newPrefs });
+
+		await storage.set(USER_PREF_STORE_KEY, newPrefs);
+
+		// if (!prefStore) {
+		// 	await storage.set(USER_PREF_STORE_KEY, { global: defaultPrefs, local: {} });
+		// 	Logger.logInfo('background: prefStore initialization processed', await storage.get(USER_PREF_STORE_KEY));
+		// } else {
+		// 	Logger.logInfo('background: prefStore initialization skipped', prefStore);
+		// }
 	} catch (error) {
 		Logger.logError(error);
 	} finally {
