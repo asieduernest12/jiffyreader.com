@@ -8,6 +8,7 @@ const siteElementExclusions = {
 	'app.grammarly.com': ['.editor-editorContainer'],
 	'notion.so': ['[data-content-editable-leaf=true]', '.notion-frame'],
 	'web.whatsapp.com.': ['[contenteditable]'],
+	'.': ['[contenteditable]', '[role=textbox]', 'input'], //disable input containers for all domains
 };
 
 /** @returns {Excluder} */
