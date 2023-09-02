@@ -50,5 +50,5 @@ jobs:
 
       - name: Build artifacts
         run: |
-            make build@latest
+            . action.sh
       
