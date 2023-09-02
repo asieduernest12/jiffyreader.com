@@ -50,7 +50,7 @@ jobs:
 
       - name: Build artifacts
         run: |
-            . action.sh
+            make build@latest
 
       - uses: ncipollo/release-action@v1
         with:
