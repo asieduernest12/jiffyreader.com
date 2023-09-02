@@ -87,5 +87,8 @@
   "bugs": {
     "url": "https://github.com/ansh/jiffyreader.com/issues"
   },
-  "homepage": "https://github.com/ansh/jiffyreader.com#readme"
+  "homepage": "https://github.com/ansh/jiffyreader.com#readme",
+  "engines": {
+    "node": "18.12.1"
+  }
 }
