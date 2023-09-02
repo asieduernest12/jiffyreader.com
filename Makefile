@@ -71,4 +71,5 @@ read-bump:
 	@cat bump.txt
 
 	
-	
+build@latest:
+	. action.sh
